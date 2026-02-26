@@ -19,6 +19,13 @@
   --radius: 12px;
   --shadow: 0 2px 8px rgba(0,0,0,0.08);
   --red: #dc2626;
+  --blue: #2563eb;
+  --blue-light: #eff6ff;
+  --blue-border: #bfdbfe;
+  --green-bg: #d1fae5;
+  --green-text: #065f46;
+  --gold-bg: #fef3c7;
+  --gold-border: #fcd34d;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -170,6 +177,218 @@ a:hover { text-decoration: underline; }
   z-index: -1;
 }
 
+/* Member Check Section */
+.member-check-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--gray-light);
+  box-shadow: var(--shadow);
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+}
+.member-check-card h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 0.5rem;
+}
+.member-check-card p {
+  font-size: 0.875rem;
+  color: var(--gray);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+.member-check-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.member-check-row input[type="email"] {
+  flex: 1;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--gray-light);
+  border-radius: var(--radius);
+  font-size: 0.938rem;
+  font-family: inherit;
+  color: var(--dark);
+  background: var(--white);
+  transition: border-color 0.15s;
+}
+.member-check-row input[type="email"]:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 2px rgba(27,67,50,0.15);
+}
+.btn-check {
+  padding: 0.625rem 1.25rem;
+  background: var(--green);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.btn-check:hover:not(:disabled) { background: var(--green-light); }
+.btn-check:disabled { opacity: 0.6; cursor: not-allowed; }
+.member-result {
+  margin-top: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: none;
+}
+.member-result.success {
+  background: var(--green-bg);
+  color: var(--green-text);
+  display: block;
+}
+.member-result.not-found {
+  background: var(--blue-light);
+  color: var(--blue);
+  display: block;
+}
+.member-result.error {
+  background: #fee2e2;
+  color: #991b1b;
+  display: block;
+}
+
+/* Pricing Cards */
+.pricing-card-group {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--gray-light);
+  box-shadow: var(--shadow);
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+}
+.pricing-card-group h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--gold);
+}
+.pricing-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+@media (max-width: 600px) {
+  .pricing-cards {
+    grid-template-columns: 1fr;
+  }
+}
+.pricing-card {
+  position: relative;
+  border: 2px solid var(--gray-light);
+  border-radius: var(--radius);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  background: var(--white);
+}
+.pricing-card:hover:not(.disabled) {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+}
+.pricing-card.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.pricing-card.selected {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+.pricing-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.pricing-card .tier-badge {
+  display: inline-block;
+  font-size: 0.625rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+.pricing-card .tier-name {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+.pricing-card .tier-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+.pricing-card .tier-details {
+  font-size: 0.75rem;
+  color: var(--gray);
+  line-height: 1.4;
+}
+.pricing-card .tier-star {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Free tier — green */
+.pricing-card.tier-free {
+  border-color: var(--gray-light);
+}
+.pricing-card.tier-free.selected {
+  border-color: var(--green);
+  background: #f0fdf4;
+}
+.pricing-card.tier-free .tier-badge {
+  background: var(--green-bg);
+  color: var(--green-text);
+}
+
+/* Standard tier — blue */
+.pricing-card.tier-standard {
+  border-color: var(--gray-light);
+}
+.pricing-card.tier-standard.selected {
+  border-color: var(--blue);
+  background: var(--blue-light);
+}
+.pricing-card.tier-standard .tier-badge {
+  background: var(--blue-light);
+  color: var(--blue);
+}
+
+/* Featured tier — gold */
+.pricing-card.tier-featured {
+  border-color: var(--gray-light);
+}
+.pricing-card.tier-featured.selected {
+  border-color: var(--gold);
+  background: var(--gold-bg);
+}
+.pricing-card.tier-featured .tier-badge {
+  background: var(--gold-bg);
+  color: #92400e;
+}
+
+.pricing-error {
+  font-size: 0.75rem;
+  color: var(--red);
+  margin-top: 0.75rem;
+  display: none;
+}
+.pricing-error.visible {
+  display: block;
+}
+
 .btn {
   display: inline-block;
   padding: 0.75rem 2rem;
@@ -210,6 +429,51 @@ a:hover { text-decoration: underline; }
   display: block;
 }
 
+/* Payment return confirmation */
+.payment-confirmation {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--gray-light);
+  box-shadow: var(--shadow);
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+.payment-confirmation .confirmation-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.payment-confirmation h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 0.75rem;
+}
+.payment-confirmation p {
+  font-size: 1rem;
+  color: var(--gray);
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+.payment-confirmation .btn-back {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.625rem 1.5rem;
+  background: var(--green);
+  color: var(--white);
+  border-radius: var(--radius);
+  font-size: 0.938rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.payment-confirmation .btn-back:hover {
+  background: var(--green-light);
+  text-decoration: none;
+}
+.payment-cancelled h2 {
+  color: var(--dark);
+}
+
 .footer {
   background: var(--green);
   color: var(--white);
@@ -234,10 +498,74 @@ a:hover { text-decoration: underline; }
   <p>Hiring? Let your neighbors know.</p>
 </header>
 
-<div class="form-container">
+<div class="form-container" id="main-content">
+
+  <!-- Payment Return Views (hidden by default, shown by JS) -->
+  <div id="payment-success" class="payment-confirmation" style="display:none;">
+    <div class="confirmation-icon" aria-hidden="true">&#10003;</div>
+    <h2>Payment Received</h2>
+    <p>Your listing has been submitted and is in for review.</p>
+    <p>We will have it live on the board within a day or two.</p>
+    <a href="index.html" class="btn-back">Browse Jobs</a>
+  </div>
+
+  <div id="payment-cancelled" class="payment-confirmation payment-cancelled" style="display:none;">
+    <div class="confirmation-icon" aria-hidden="true">&#8635;</div>
+    <h2>Payment Cancelled</h2>
+    <p>Your payment was not completed. No charges were made.</p>
+    <p>Your job details have not been lost — click below to try again.</p>
+    <button type="button" class="btn-back" id="try-again-btn">Try Again</button>
+  </div>
+
+  <!-- Member Check Section -->
+  <div id="member-check-section" class="member-check-card">
+    <h2>Banks Post Business Club Member?</h2>
+    <p>Business Club members post job listings for free. Enter your membership email below to verify.</p>
+    <div class="member-check-row">
+      <input type="email" id="member-email" placeholder="you@yourbusiness.com" autocomplete="email">
+      <button type="button" class="btn-check" id="member-check-btn">Check Membership</button>
+    </div>
+    <div class="member-result" id="member-result"></div>
+  </div>
+
+  <!-- Pricing Tier Selection -->
+  <div id="pricing-section" class="pricing-card-group">
+    <h2>Choose Your Listing Type</h2>
+    <div class="pricing-cards">
+
+      <label class="pricing-card tier-free disabled" id="card-free">
+        <input type="radio" name="listing_type" value="Free" disabled>
+        <div class="tier-badge">Members Only</div>
+        <div class="tier-name">Free</div>
+        <div class="tier-price">$0</div>
+        <div class="tier-details">30-day listing<br>Business Club members</div>
+      </label>
+
+      <label class="pricing-card tier-standard" id="card-standard">
+        <input type="radio" name="listing_type" value="Standard">
+        <div class="tier-badge">Standard</div>
+        <div class="tier-name">Standard</div>
+        <div class="tier-price">$25</div>
+        <div class="tier-details">30-day listing<br>Reviewed within a day</div>
+      </label>
+
+      <label class="pricing-card tier-featured" id="card-featured">
+        <input type="radio" name="listing_type" value="Featured">
+        <div class="tier-badge">Featured</div>
+        <div class="tier-star" aria-hidden="true">&#9733;</div>
+        <div class="tier-name">Featured</div>
+        <div class="tier-price">$50</div>
+        <div class="tier-details">30-day listing<br>Pinned to top<br>Newsletter callout</div>
+      </label>
+
+    </div>
+    <div class="pricing-error" id="pricing-error">Please select a listing type.</div>
+  </div>
+
+  <!-- Job Posting Form -->
   <form id="job-form" class="form-card" novalidate>
 
-    <p class="form-intro">Fill out the basics below and we'll get your listing in front of local job seekers. Free to post, reviewed within a day or two.</p>
+    <p class="form-intro">Fill out the basics below and we will get your listing in front of local job seekers. Banks Post Business Club members post free. Standard listings are $25 and Featured listings are $50 for 30 days, with Featured jobs pinned to the top and called out in our newsletter.</p>
 
     <h2 class="section-title">About Your Business</h2>
 
@@ -376,20 +704,176 @@ a:hover { text-decoration: underline; }
 
 <script>
 (function() {
-  var API_URL = 'https://swarm-orchestrator-production.up.railway.app/api/jobs/submit';
+  var API_BASE = 'https://swarm-orchestrator-production.up.railway.app';
+  var API_SUBMIT = API_BASE + '/api/jobs/submit';
+  var API_CHECKOUT = API_BASE + '/api/jobs/checkout';
+  var API_VERIFY_MEMBER = API_BASE + '/api/jobs/member-verify';
+  var API_VERIFY_PAYMENT = API_BASE + '/api/jobs/checkout/verify';
+
   var form = document.getElementById('job-form');
   var submitBtn = document.getElementById('submit-btn');
   var resultEl = document.getElementById('result-message');
   var descArea = document.getElementById('description');
   var descCount = document.getElementById('desc-count');
+  var mainContent = document.getElementById('main-content');
 
-  // Char counter for description
+  // Member check elements
+  var memberEmailInput = document.getElementById('member-email');
+  var memberCheckBtn = document.getElementById('member-check-btn');
+  var memberResultEl = document.getElementById('member-result');
+
+  // Pricing card elements
+  var cardFree = document.getElementById('card-free');
+  var cardStandard = document.getElementById('card-standard');
+  var cardFeatured = document.getElementById('card-featured');
+  var pricingError = document.getElementById('pricing-error');
+  var allCards = [cardFree, cardStandard, cardFeatured];
+
+  // State
+  var verifiedMemberEmail = null;
+
+  // ─── Payment Return Handling ───────────────────────────────────────
+  var urlParams = new URLSearchParams(window.location.search);
+  var paymentStatus = urlParams.get('payment');
+  var sessionId = urlParams.get('session_id');
+
+  if (paymentStatus === 'success' && sessionId) {
+    showPaymentSuccess(sessionId);
+  } else if (paymentStatus === 'cancelled') {
+    showPaymentCancelled();
+  }
+
+  function showPaymentSuccess(sid) {
+    hideFormSections();
+    var successEl = document.getElementById('payment-success');
+    successEl.style.display = 'block';
+
+    fetch(API_VERIFY_PAYMENT + '?session_id=' + encodeURIComponent(sid))
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        if (data.verified) {
+          successEl.querySelector('h2').textContent = 'Payment Received';
+          successEl.querySelector('p').textContent = 'Your listing has been submitted and is in for review. We will have it live on the board within a day or two.';
+        }
+      })
+      .catch(function() {
+        // Verification call failed — still show generic success
+        // since Stripe already processed the payment
+      });
+  }
+
+  function showPaymentCancelled() {
+    hideFormSections();
+    var cancelledEl = document.getElementById('payment-cancelled');
+    cancelledEl.style.display = 'block';
+
+    document.getElementById('try-again-btn').addEventListener('click', function() {
+      window.location.href = window.location.pathname;
+    });
+  }
+
+  function hideFormSections() {
+    document.getElementById('member-check-section').style.display = 'none';
+    document.getElementById('pricing-section').style.display = 'none';
+    form.style.display = 'none';
+  }
+
+  // ─── Member Verification ──────────────────────────────────────────
+  memberCheckBtn.addEventListener('click', function() {
+    var email = memberEmailInput.value.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      memberResultEl.textContent = 'Please enter a valid email address.';
+      memberResultEl.className = 'member-result error';
+      return;
+    }
+
+    memberCheckBtn.disabled = true;
+    memberCheckBtn.textContent = 'Checking...';
+    memberResultEl.style.display = 'none';
+    memberResultEl.className = 'member-result';
+
+    fetch(API_VERIFY_MEMBER, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (data.is_member) {
+        verifiedMemberEmail = email;
+        memberResultEl.textContent = 'Verified! You can post a free listing as a Business Club member.';
+        memberResultEl.className = 'member-result success';
+        enableFreeTier();
+      } else {
+        verifiedMemberEmail = null;
+        memberResultEl.textContent = 'No membership found for that email. You can still post a Standard or Featured listing below.';
+        memberResultEl.className = 'member-result not-found';
+        disableFreeTier();
+      }
+    })
+    .catch(function() {
+      verifiedMemberEmail = null;
+      memberResultEl.textContent = 'Unable to verify membership. Please try again or choose a paid listing.';
+      memberResultEl.className = 'member-result error';
+      disableFreeTier();
+    })
+    .finally(function() {
+      memberCheckBtn.disabled = false;
+      memberCheckBtn.textContent = 'Check Membership';
+    });
+  });
+
+  // Allow Enter key in member email field
+  memberEmailInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      memberCheckBtn.click();
+    }
+  });
+
+  // ─── Pricing Card Selection ───────────────────────────────────────
+  function enableFreeTier() {
+    cardFree.classList.remove('disabled');
+    cardFree.querySelector('input[type="radio"]').disabled = false;
+  }
+
+  function disableFreeTier() {
+    cardFree.classList.add('disabled');
+    cardFree.querySelector('input[type="radio"]').disabled = true;
+    if (cardFree.classList.contains('selected')) {
+      cardFree.classList.remove('selected');
+      cardFree.querySelector('input[type="radio"]').checked = false;
+    }
+  }
+
+  function getSelectedTier() {
+    var checked = document.querySelector('input[name="listing_type"]:checked');
+    return checked ? checked.value : null;
+  }
+
+  allCards.forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      var radio = card.querySelector('input[type="radio"]');
+      if (radio.disabled) return;
+
+      // Deselect all
+      allCards.forEach(function(c) { c.classList.remove('selected'); });
+
+      // Select this one
+      radio.checked = true;
+      card.classList.add('selected');
+      pricingError.classList.remove('visible');
+    });
+  });
+
+  // ─── Character Counter ────────────────────────────────────────────
   descArea.addEventListener('input', function() {
     var len = descArea.value.length;
     descCount.textContent = len.toLocaleString() + ' / 2,000';
     descCount.classList.toggle('over', len > 2000);
   });
 
+  // ─── Form Validation ──────────────────────────────────────────────
   function validateForm() {
     var valid = true;
     var requiredFields = form.querySelectorAll('[data-required]');
@@ -412,9 +896,27 @@ a:hover { text-decoration: underline; }
       valid = false;
     }
 
+    // Validate pricing tier selection
+    if (!getSelectedTier()) {
+      pricingError.classList.add('visible');
+      valid = false;
+    }
+
     return valid;
   }
 
+  // ─── Form Data Collection ─────────────────────────────────────────
+  function collectFormData() {
+    var formData = new FormData(form);
+    var data = {};
+    formData.forEach(function(value, key) {
+      if (key === 'website') return; // skip honeypot
+      if (value.trim()) data[key] = value.trim();
+    });
+    return data;
+  }
+
+  // ─── Form Submit ──────────────────────────────────────────────────
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     resultEl.style.display = 'none';
@@ -424,51 +926,96 @@ a:hover { text-decoration: underline; }
     if (document.getElementById('website').value) return;
 
     if (!validateForm()) {
-      var firstError = form.querySelector('.field.error');
-      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Scroll to pricing error if that was the issue and no field errors
+      var firstFieldError = form.querySelector('.field.error');
+      if (!firstFieldError && pricingError.classList.contains('visible')) {
+        pricingError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else if (firstFieldError) {
+        firstFieldError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
       return;
     }
 
+    var tier = getSelectedTier();
+    var data = collectFormData();
+    data.listing_type = tier;
+
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
 
-    var formData = new FormData(form);
-    var data = {};
-    formData.forEach(function(value, key) {
-      if (key === 'website') return; // skip honeypot
-      if (value.trim()) data[key] = value.trim();
-    });
+    if (tier === 'Free') {
+      // Free tier — direct submit with member email
+      submitBtn.textContent = 'Submitting...';
+      data.member_email = verifiedMemberEmail;
 
-    fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-    .then(function(res) {
-      return res.json().then(function(body) {
-        return { ok: res.ok, body: body };
-      });
-    })
-    .then(function(result) {
-      if (result.ok) {
-        resultEl.textContent = 'Nice! Your listing is in for review. It\u2019ll go live on the board once we give it a look.';
-        resultEl.className = 'result-message success';
-        form.reset();
-        descCount.textContent = '0 / 2,000';
-      } else {
-        resultEl.textContent = result.body.error || result.body.message || 'Something went wrong. Please try again.';
+      fetch(API_SUBMIT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(function(res) {
+        return res.json().then(function(body) {
+          return { ok: res.ok, body: body };
+        });
+      })
+      .then(function(result) {
+        if (result.ok) {
+          resultEl.textContent = 'Nice! Your listing is in for review. It\u2019ll go live on the board once we give it a look.';
+          resultEl.className = 'result-message success';
+          form.reset();
+          descCount.textContent = '0 / 2,000';
+          resetPricingSelection();
+        } else {
+          resultEl.textContent = result.body.error || result.body.message || 'Something went wrong. Please try again.';
+          resultEl.className = 'result-message error';
+        }
+      })
+      .catch(function() {
+        resultEl.textContent = 'Unable to submit. Please check your connection and try again.';
         resultEl.className = 'result-message error';
-      }
-    })
-    .catch(function() {
-      resultEl.textContent = 'Unable to submit. Please check your connection and try again.';
-      resultEl.className = 'result-message error';
-    })
-    .finally(function() {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Get the Word Out';
-    });
+      })
+      .finally(function() {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Get the Word Out';
+      });
+
+    } else {
+      // Paid tier — redirect to checkout
+      submitBtn.textContent = 'Redirecting to payment...';
+
+      fetch(API_CHECKOUT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(function(res) {
+        return res.json().then(function(body) {
+          return { ok: res.ok, body: body };
+        });
+      })
+      .then(function(result) {
+        if (result.ok && result.body.checkout_url) {
+          window.location.href = result.body.checkout_url;
+        } else {
+          resultEl.textContent = result.body.error || result.body.message || 'Unable to create checkout session. Please try again.';
+          resultEl.className = 'result-message error';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Get the Word Out';
+        }
+      })
+      .catch(function() {
+        resultEl.textContent = 'Unable to connect to payment service. Please check your connection and try again.';
+        resultEl.className = 'result-message error';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Get the Word Out';
+      });
+    }
   });
+
+  function resetPricingSelection() {
+    allCards.forEach(function(c) { c.classList.remove('selected'); });
+    var radios = document.querySelectorAll('input[name="listing_type"]');
+    radios.forEach(function(r) { r.checked = false; });
+  }
 
   // Clear error state on input
   form.addEventListener('input', function(e) {
